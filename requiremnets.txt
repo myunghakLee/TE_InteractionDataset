@@ -3,3 +3,4 @@ matplotlib
 pandas
 tqdm
 typing_extensions
+jpype1
