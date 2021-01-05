@@ -52,7 +52,7 @@ for path in paths: # file root
         'savepath': path + "/TE/"
     }
     os.makedirs(config['savepath'], exist_ok=True)
-    files = glob.glob(path + "vehicle*.csv")
+    files = sorted(glob.glob(path + "vehicle*.csv"), key = lambda a: int(a.split('_')[-1].split('.')[0]))
     for f_i, f in enumerate(files): # select file
         scenario = f
         print(f)
@@ -113,8 +113,8 @@ for path in paths: # file root
             print("save " + config["savepath"] + f.split('/')[-1].split('.')[0] + "_" + str(implement).zfill(3) +".json")
             with open(config["savepath"] + f.split('/')[-1].split('.')[0] + "_" + str(implement).zfill(3) +".json", "w") as j:
                 json.dump(write_dict, j)
-#         if f_i > 3:
-#             break
+        if f_i > 5:
+            break
 
 
 # +
