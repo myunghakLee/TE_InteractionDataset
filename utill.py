@@ -19,8 +19,28 @@ import glob
 import csv
 import os
 
-
 # +
+
+"""
+preprocessing output
+    data
+        normalzie_xy
+        agent
+            1
+                xy
+                time
+                id
+                oldid
+                type
+            2
+            3
+            ...
+            p1
+            p2
+            ...
+            
+
+"""
 def preprocessing(scenario):
     df = pd.read_csv(scenario, index_col = False)
     ped_sceraio = scenario.replace("vehicle_tracks_", "pedestrian_tracks_")
@@ -112,6 +132,13 @@ class calc_TE():
 
         self.teCalc.setObservations(data_desc, data_source)
         teDescToSource = self.teCalc.computeAverageLocalOfObservations()
+        return teSourceToDesc, teDescToSource    
+
+    def computeTE_a2b(self, data_source, data_desc):
+        self.teCalc.setObservations(data_source, data_desc)
+        teSourceToDesc = self.teCalc.computeAverageLocalOfObservations()
+
+        return teSourceToDesc
 
 #         print("source to desc : ", teSourceToDesc)
 #         print("desc to source : ", teDescToSource)
